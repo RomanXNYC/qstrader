@@ -105,10 +105,11 @@ class YahooDailyCsvBarPriceHandler(AbstractBarPriceHandler):
                     "timestamp": dft.index[0]
                 }
                 self.tickers[ticker] = ticker_prices
-            except OSError:
+            except OSError as ex:
                 print(
                     "Could not subscribe ticker %s "
-                    "as no data CSV found for pricing." % ticker
+                    "as no data CSV found for pricing." % ticker,
+                    ex.strerror
                 )
         else:
             print(
